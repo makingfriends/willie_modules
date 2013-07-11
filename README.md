@@ -26,6 +26,6 @@ Logger will log everything to a log server.
 
 **Config Variables**
 
-  * `channels` - a list of the channels to log. This is a subset of `[core]`s `channels` and if not defind will default to all channels willie is currently in.
+  * `channels` - a list of the channels to log. This is a subset of `[core]`.`channels` and if not defind will default to all channels willie is currently in.
   * `base_url` - the url where these logs will go - *REQUIRED*
   * `api_key` - the api key for connecting to the log server - *REQUIRED*
