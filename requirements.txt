@@ -1,3 +1,4 @@
 requests==1.2.3
 -e git+git@github.com:bear/python-twitter.git#egg=python-twitter
 -e git+git@github.com:tweepy/tweepy.git#egg=tweepy
+github3.py==0.7.0
