@@ -53,7 +53,7 @@ def setup(willie):
         mentions = api.GetMentions()
 
         while True:
-            time.sleep(10)
+            time.sleep(60)
             try:
                 new_recents = api.GetUserTimeline(
                     screen_name=willie.config.twitter.monitor_user,
