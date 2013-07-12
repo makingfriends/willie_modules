@@ -45,3 +45,16 @@ Watches the authenticated twitter user and relays their tweents and mentions int
   * `access_token_secret` - self explanatory (REQUIRED)
   * `channel` - what channel to relay the tweets into (REQUIRED)
   * `monitor_user` = - the twitter user to monitor (screen name) (REQUIRED)
+
+github
+------
+Watches an organization and relays activity to a channel.
+
+**Config section:** `[github]`
+
+**Config Variables**
+
+  * `channel` - the channel to message when activity happens (REQUIRED)
+  * `username` - the username to which the `token` belongs (REQUIRED)
+  * `orgname` - the orgname to which the username is a member of to monitor (REQUIRED)
+  * `token` - the account token for the authenticating user (`username`) (REQUIRED)
