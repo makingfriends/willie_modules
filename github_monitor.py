@@ -39,7 +39,11 @@ def github_org_monitor(willie):
     poller = GHEventPoller(willie.config.github.token, feed, sayer)
     
     while True:
-        poller.start()
+        try:
+            poller.start()
+        except Exception, e:
+            print 'failed:', str(e)
+            time.sleep(10)
 
 
 def get(endpoint, tok, etag=None):
