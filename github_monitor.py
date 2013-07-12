@@ -78,6 +78,9 @@ class EventRenderer(object):
 
         return ret
 
+    def render_CreateEvent(self, event):
+        return ['%s created %s on %s' % (event['actor']['login'], event['payload']['ref_type'], event['repo']['name'])]
+
     def render(self, event):
         renderer = getattr(self, 'render_%s' % event['type'], None)
         if renderer:
