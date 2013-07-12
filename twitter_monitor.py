@@ -54,26 +54,31 @@ def setup(willie):
 
         while True:
             time.sleep(10)
-            new_recents = api.GetUserTimeline(
-                screen_name=willie.config.twitter.monitor_user,
-                since_id=recents[0].id
-            )
-            if len(new_recents):
-                recents = new_recents
-            for status in new_recents:
-                willie.msg(
-                    willie.config.twitter.channel,
-                    '@%s says on twitter: %s' % (willie.config.twitter.monitor_user, status.text)
+            try:
+                new_recents = api.GetUserTimeline(
+                    screen_name=willie.config.twitter.monitor_user,
+                    since_id=recents[0].id
                 )
+                if len(new_recents):
+                    recents = new_recents
+                for status in new_recents:
+                    willie.msg(
+                        willie.config.twitter.channel,
+                        '@%s says on twitter: %s' % (willie.config.twitter.monitor_user, status.text)
+                    )
 
-            new_mentions = api.GetMentions(since_id=mentions[0].id)
-            if len(new_mentions):
-                mentions = new_mentions
-            for status in new_mentions:
-                willie.msg(
-                    willie.config.twitter.channel,
-                    '@%s was mentioned on twitter: %s' % (
-                        willie.config.twitter.monitor_user, status.text))
+                new_mentions = api.GetMentions(since_id=mentions[0].id)
+                if len(new_mentions):
+                    mentions = new_mentions
+                for status in new_mentions:
+                    willie.msg(
+                        willie.config.twitter.channel,
+                        '@%s was mentioned on twitter: %s' % (
+                            willie.config.twitter.monitor_user, status.text))
+            except twitter.TwitterError, e:
+                willie.msg('Could not poll twitter: %s' % e)
+            except Exception, e:
+                willie.msg('General twitter polling error: %s' % e)
 
 
     t = threading.Thread(target=monitor, args=(willie,))
