@@ -76,9 +76,9 @@ def setup(willie):
                         '@%s was mentioned on twitter: %s' % (
                             willie.config.twitter.monitor_user, status.text))
             except twitter.TwitterError, e:
-                willie.msg('Could not poll twitter: %s' % e)
+                willie.msg(willie.config.twitter.channel, 'Could not poll twitter: %s' % e)
             except Exception, e:
-                willie.msg('General twitter polling error: %s' % e)
+                willie.msg(willie.config.twitter.channel, 'General twitter polling error: %s' % e)
 
 
     t = threading.Thread(target=monitor, args=(willie,))
